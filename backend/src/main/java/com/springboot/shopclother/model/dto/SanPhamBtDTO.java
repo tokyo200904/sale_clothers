@@ -1,12 +1,21 @@
 package com.springboot.shopclother.model.dto;
 
 public class SanPhamBtDTO {
+    private Integer maBT;
     private String chatLieuSanPham;
     private String kichCo;
     private String mauSac;
     private Integer soLuongTrongKho;
-    private Double giaSanPham;
     private String anh;
+    private Double giaSanPham;
+
+    public Integer getMaBT() {
+        return maBT;
+    }
+
+    public void setMaBT(Integer maBT) {
+        this.maBT = maBT;
+    }
 
     // Getters & Setters
     public String getChatLieuSanPham() { return chatLieuSanPham; }

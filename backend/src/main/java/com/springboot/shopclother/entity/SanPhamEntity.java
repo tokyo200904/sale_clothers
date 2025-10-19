@@ -30,9 +30,6 @@ public class SanPhamEntity {
     @JoinColumn(name = "ma_dmc", nullable = false)
     private DanhMucConEntity danhMucCon;
 
-    @ManyToOne
-    @JoinColumn(name = "ma_ch", nullable = false)
-    private CuaHangEntity cuaHang;
     @OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SanPhamBtEntity> sanPhamBts;
 
@@ -55,6 +52,5 @@ public class SanPhamEntity {
     public void setNgayTao(Date ngayTao) { this.ngayTao = ngayTao; }
     public DanhMucConEntity getDanhMucCon() { return danhMucCon; }
     public void setDanhMucCon(DanhMucConEntity danhMucCon) { this.danhMucCon = danhMucCon; }
-    public CuaHangEntity getCuaHang() { return cuaHang; }
-    public void setCuaHang(CuaHangEntity cuaHang) { this.cuaHang = cuaHang; }
+
 }

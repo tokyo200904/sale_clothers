@@ -35,9 +35,6 @@ public class UserServiceImpl implements UserService {
         if (userRepository.existsByEmail(dto.getEmail())) {
             throw new RuntimeException("Email đã tồn tại");
         }
-        if (userRepository.existsBySoDienThoai(dto.getSoDienThoai())) {
-            throw new RuntimeException("Số điện thoại đã tồn tại");
-        }
         UserEntity user = userMapper.toEntity(dto);
         user.setNgayTao(new Date());
         UserEntity saved = userRepository.save(user);

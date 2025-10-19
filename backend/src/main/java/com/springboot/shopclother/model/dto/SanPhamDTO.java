@@ -7,8 +7,6 @@ public class SanPhamDTO {
     private String moTaSanPham;
     private Double phanTramKhuyenMai;
     private Integer maDmc;
-    private Integer maCH;
-    private List<SanPhamBtDTO> chiTietList;
 
     // Getters & Setters
     public String getTenSP() { return tenSP; }
@@ -19,8 +17,5 @@ public class SanPhamDTO {
     public void setPhanTramKhuyenMai(Double phanTramKhuyenMai) { this.phanTramKhuyenMai = phanTramKhuyenMai; }
     public Integer getMaDmc() { return maDmc; }
     public void setMaDmc(Integer maDmc) { this.maDmc = maDmc; }
-    public Integer getMaCH() { return maCH; }
-    public void setMaCH(Integer maCH) { this.maCH = maCH; }
-    public List<SanPhamBtDTO> getChiTietList() { return chiTietList; }
-    public void setChiTietList(List<SanPhamBtDTO> chiTietList) { this.chiTietList = chiTietList; }
+
 }

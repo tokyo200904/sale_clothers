@@ -2,7 +2,9 @@ package com.springboot.shopclother.sevice;
 
 
 
+import com.springboot.shopclother.entity.SanPhamBtEntity;
 import com.springboot.shopclother.entity.SanPhamEntity;
+import com.springboot.shopclother.model.dto.SanPhamBtDTO;
 import com.springboot.shopclother.model.dto.SanPhamDTO;
 
 import java.util.List;
@@ -12,4 +14,5 @@ public interface SanPhamService {
     SanPhamDTO createSanPham(SanPhamDTO dto);
     SanPhamDTO updateSanPham(Integer id, SanPhamDTO dto);
     void deleteSanPham(Integer id);
+    SanPhamDTO getById(Integer id);
 }

@@ -2,6 +2,8 @@ package com.springboot.shopclother.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "danhmuccon")
 public class DanhMucConEntity {
@@ -17,6 +19,9 @@ public class DanhMucConEntity {
     @ManyToOne
     @JoinColumn(name = "ma_danhmuc", nullable = false)
     private DanhMucEntity danhMuc;
+
+    @OneToMany(mappedBy = "danhMucCon", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SanPhamEntity> sanPhams;
 
     // Getters & Setters
     public Integer getMaDMC() { return maDMC; }

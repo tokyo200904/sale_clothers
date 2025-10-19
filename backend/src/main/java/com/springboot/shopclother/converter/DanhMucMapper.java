@@ -30,10 +30,6 @@ public class DanhMucMapper {
         dto.setMaDMC(entity.getMaDMC());
         dto.setTenDMC(entity.getTenDMC());
 
-        if (entity.getDanhMuc() != null) {
-            dto.setMaDanhMuc(entity.getDanhMuc().getMaDanhMuc());
-            dto.setTenDanhMuc(entity.getDanhMuc().getTenDanhMuc());
-        }
 
         return dto;
     }

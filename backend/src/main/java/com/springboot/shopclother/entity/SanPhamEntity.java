@@ -1,6 +1,8 @@
 package com.springboot.shopclother.entity;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -22,13 +24,27 @@ public class SanPhamEntity {
     @Column(name = "phantram_khuyenmai")
     private Double phanTramKhuyenMai;
 
+    @Column(name = "gia", precision = 10, scale = 2)
+    private BigDecimal gia;
+
+    @Column(name = "anh_sanpham", length = 255)
+    private String anhSanPham;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @ManyToOne
-    @JoinColumn(name = "ma_dmc", nullable = false)
-    private DanhMucConEntity danhMucCon;
+    public DanhMucEntity getDanhMuc() {
+        return danhMuc;
+    }
+
+    public void setDanhMuc(DanhMucEntity danhMuc) {
+        this.danhMuc = danhMuc;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ma_danhmuc")
+    private DanhMucEntity danhMuc;
 
     @OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SanPhamBtEntity> sanPhamBts;
@@ -45,12 +61,28 @@ public class SanPhamEntity {
     public String getTenSP() { return tenSP; }
     public void setTenSP(String tenSP) { this.tenSP = tenSP; }
     public String getMoTaSanPham() { return moTaSanPham; }
+
+    public BigDecimal getGia() {
+        return gia;
+    }
+
+    public void setGia(BigDecimal gia) {
+        this.gia = gia;
+    }
+
+    public String getAnhSanPham() {
+        return anhSanPham;
+    }
+
+    public void setAnhSanPham(String anhSanPham) {
+        this.anhSanPham = anhSanPham;
+    }
+
     public void setMoTaSanPham(String moTaSanPham) { this.moTaSanPham = moTaSanPham; }
     public Double getPhanTramKhuyenMai() { return phanTramKhuyenMai; }
     public void setPhanTramKhuyenMai(Double phanTramKhuyenMai) { this.phanTramKhuyenMai = phanTramKhuyenMai; }
     public Date getNgayTao() { return ngayTao; }
     public void setNgayTao(Date ngayTao) { this.ngayTao = ngayTao; }
-    public DanhMucConEntity getDanhMucCon() { return danhMucCon; }
-    public void setDanhMucCon(DanhMucConEntity danhMucCon) { this.danhMucCon = danhMucCon; }
+
 
 }

@@ -9,13 +9,13 @@ import java.util.List;
 public interface SanPhamMapper {
 
     // Entity → DTO
-    @Mapping(source = "danhMucCon.maDMC", target = "maDmc")
+    @Mapping(source = "danhMuc.maDanhMuc", target = "ma_DanhMuc")
 
     SanPhamDTO toDTO(SanPhamEntity entity);
 
     // DTO → Entity
     @InheritInverseConfiguration
-    @Mapping(target = "danhMucCon", ignore = true) // set trong service
+    @Mapping(target = "danhMuc", ignore = true) // set trong service
     SanPhamEntity toEntity(SanPhamDTO dto);
 
     List<SanPhamDTO> toDTOList(List<SanPhamEntity> entities);

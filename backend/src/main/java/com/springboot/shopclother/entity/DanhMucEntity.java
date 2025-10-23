@@ -14,15 +14,21 @@ public class DanhMucEntity {
 
     @Column(name = "ten_danhmuc", nullable = false, length = 100)
     private String tenDanhMuc;
+    @OneToMany(mappedBy = "danhMuc", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SanPhamEntity> sanPhams;
 
-    @OneToMany(mappedBy = "danhMuc", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<DanhMucConEntity> danhMucCons;
+    public List<SanPhamEntity> getSanPhams() {
+        return sanPhams;
+    }
+
+    public void setSanPhams(List<SanPhamEntity> sanPhams) {
+        this.sanPhams = sanPhams;
+    }
 
     // Getters & Setters
     public Integer getMaDanhMuc() { return maDanhMuc; }
     public void setMaDanhMuc(Integer maDanhMuc) { this.maDanhMuc = maDanhMuc; }
     public String getTenDanhMuc() { return tenDanhMuc; }
     public void setTenDanhMuc(String tenDanhMuc) { this.tenDanhMuc = tenDanhMuc; }
-    public List<DanhMucConEntity> getDanhMucCons() { return danhMucCons; }
-    public void setDanhMucCons(List<DanhMucConEntity> danhMucCons) { this.danhMucCons = danhMucCons; }
+
 }

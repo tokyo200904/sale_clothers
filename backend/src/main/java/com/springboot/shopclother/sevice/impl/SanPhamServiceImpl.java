@@ -2,20 +2,18 @@ package com.springboot.shopclother.sevice.impl;
 
 
 import com.springboot.shopclother.converter.SanPhamMapper;
-import com.springboot.shopclother.entity.DanhMucConEntity;
+import com.springboot.shopclother.entity.DanhMucEntity;
 import com.springboot.shopclother.entity.SanPhamEntity;
 
 
 import com.springboot.shopclother.model.dto.SanPhamDTO;
-import com.springboot.shopclother.repository.DanhMucConRepository;
+import com.springboot.shopclother.repository.DanhMucRepository;
 import com.springboot.shopclother.repository.SanPhamRepository;
 import com.springboot.shopclother.sevice.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class SanPhamServiceImpl implements SanPhamService {
@@ -23,7 +21,7 @@ public class SanPhamServiceImpl implements SanPhamService {
     private SanPhamRepository sanPhamRepository;
 
     @Autowired
-    private DanhMucConRepository danhMucConRepository;
+    private DanhMucRepository danhMucRepository;
 
     @Autowired
     private SanPhamMapper sanPhamMapper;
@@ -37,9 +35,9 @@ public class SanPhamServiceImpl implements SanPhamService {
     public SanPhamDTO createSanPham(SanPhamDTO dto) {
         SanPhamEntity entity = sanPhamMapper.toEntity(dto);
 
-        DanhMucConEntity dmc = danhMucConRepository.findById(dto.getMaDmc())
+        DanhMucEntity dmc = danhMucRepository.findById(dto.getMa_DanhMuc())
                 .orElseThrow(() -> new RuntimeException("Danh mục con không tồn tại"));
-        entity.setDanhMucCon(dmc);
+        entity.setDanhMuc(dmc);
 
         SanPhamEntity saved = sanPhamRepository.save(entity);
         return sanPhamMapper.toDTO(saved);
@@ -53,10 +51,10 @@ public class SanPhamServiceImpl implements SanPhamService {
         entity.setMoTaSanPham(dto.getMoTaSanPham());
         entity.setPhanTramKhuyenMai(dto.getPhanTramKhuyenMai());
 
-        if (dto.getMaDmc() != null) {
-            DanhMucConEntity dmc = danhMucConRepository.findById(dto.getMaDmc())
+        if (dto.getMa_DanhMuc() != null) {
+            DanhMucEntity dmc = danhMucRepository.findById(dto.getMa_DanhMuc())
                     .orElseThrow(() -> new RuntimeException("Danh mục con không tồn tại"));
-            entity.setDanhMucCon(dmc);
+            entity.setDanhMuc(dmc);
         }
         SanPhamEntity saved = sanPhamRepository.save(entity);
         return sanPhamMapper.toDTO(saved);

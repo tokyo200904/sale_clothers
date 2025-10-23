@@ -6,26 +6,29 @@ import com.springboot.shopclother.model.dto.SanPhamDTO;
 import com.springboot.shopclother.sevice.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/sanpham")
+@RequestMapping("${api.prefix}/admin/sanpham")
 public class SanPhamApi {
 
     @Autowired
     private SanPhamService sanPhamService;
 
     // Create
-    @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/create")
     public ResponseEntity<SanPhamDTO> create(@RequestBody SanPhamDTO dto) {
         SanPhamDTO created = sanPhamService.createSanPham(dto);
         return ResponseEntity.ok(created);
     }
 
     // Update
-    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/update/{id}")
     public ResponseEntity<SanPhamDTO> update(@PathVariable Integer id,
                                              @RequestBody SanPhamDTO dto) {
         SanPhamDTO updated = sanPhamService.updateSanPham(id, dto);
@@ -33,21 +36,24 @@ public class SanPhamApi {
     }
 
     // Get by id
-    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/get/{id}")
     public ResponseEntity<SanPhamDTO> getById(@PathVariable Integer id) {
         SanPhamDTO dto = sanPhamService.getById(id);
         return ResponseEntity.ok(dto);
     }
 
     // Get all
-    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/getAll")
     public ResponseEntity<List<SanPhamDTO>> getAll() {
         List<SanPhamDTO> list = sanPhamService.getAllSanPham();
         return ResponseEntity.ok(list);
     }
 
     // Delete
-    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         sanPhamService.deleteSanPham(id);
         return ResponseEntity.noContent().build();

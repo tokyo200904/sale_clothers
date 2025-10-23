@@ -18,6 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
     @Override
     public List<UserDTO> getAllUsers() {
         return userMapper.toDTOList(userRepository.findAll());
@@ -31,17 +32,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO createUser(UserDTO dto) {
-        if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("Email đã tồn tại");
-        }
-        UserEntity user = userMapper.toEntity(dto);
-        user.setNgayTao(new Date());
-        UserEntity saved = userRepository.save(user);
-        return userMapper.toDTO(saved);
-    }
-
-    @Override
     public UserDTO updateUser(Integer id, UserDTO dto) {
         UserEntity user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng"));
@@ -49,7 +39,6 @@ public class UserServiceImpl implements UserService {
         user.setEmail(dto.getEmail());
         user.setSoDienThoai(dto.getSoDienThoai());
         user.setDiaChi(dto.getDiaChi());
-        user.setMatKhau(dto.getMatKhau());
         user.setRole(dto.getRole());
         UserEntity updated = userRepository.save(user);
         return userMapper.toDTO(updated);
@@ -62,4 +51,6 @@ public class UserServiceImpl implements UserService {
         }
         userRepository.deleteById(id);
     }
+
+
 }

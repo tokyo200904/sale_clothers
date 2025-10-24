@@ -20,7 +20,7 @@ public class SanPhamApi {
 
     // Create
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<SanPhamDTO> create(@RequestBody SanPhamDTO dto) {
         SanPhamDTO created = sanPhamService.createSanPham(dto);
         return ResponseEntity.ok(created);
@@ -28,7 +28,7 @@ public class SanPhamApi {
 
     // Update
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<SanPhamDTO> update(@PathVariable Integer id,
                                              @RequestBody SanPhamDTO dto) {
         SanPhamDTO updated = sanPhamService.updateSanPham(id, dto);
@@ -37,7 +37,7 @@ public class SanPhamApi {
 
     // Get by id
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<SanPhamDTO> getById(@PathVariable Integer id) {
         SanPhamDTO dto = sanPhamService.getById(id);
         return ResponseEntity.ok(dto);
@@ -45,7 +45,7 @@ public class SanPhamApi {
 
     // Get all
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/getAll")
+    @GetMapping
     public ResponseEntity<List<SanPhamDTO>> getAll() {
         List<SanPhamDTO> list = sanPhamService.getAllSanPham();
         return ResponseEntity.ok(list);
@@ -53,7 +53,7 @@ public class SanPhamApi {
 
     // Delete
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         sanPhamService.deleteSanPham(id);
         return ResponseEntity.noContent().build();

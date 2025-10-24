@@ -24,7 +24,7 @@ public class DanhMucApi {
 
 //lay all
 @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/getAll")
+    @GetMapping
     public ResponseEntity<List<DanhMucDTO>> getAllDanhMuc() {
         List<DanhMucDTO> list = danhMucService.getAllDanhMuc()
                 .stream()
@@ -36,13 +36,13 @@ public class DanhMucApi {
 
 //tao
 @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<DanhMucDTO> createDanhMuc(@RequestBody DanhMucEntity danhMuc) {
         return ResponseEntity.ok(DanhMucMapper.toDTO(danhMucService.createDanhMuc(danhMuc)));
     }
 //sua
 @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<DanhMucDTO> updateDanhMuc(@PathVariable Integer id,
                                                     @RequestBody DanhMucEntity danhMuc) {
         return ResponseEntity.ok(DanhMucMapper.toDTO(danhMucService.updateDanhMuc(id, danhMuc)));
@@ -50,7 +50,7 @@ public class DanhMucApi {
 
 //xoa
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDanhMuc(@PathVariable Integer id) {
         danhMucService.deleteDanhMuc(id);
         return ResponseEntity.ok("Xóa danh mục thành công!");

@@ -19,7 +19,7 @@ public class UserApi {
     private UserService userService;
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/getAll")
+    @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
@@ -30,7 +30,7 @@ public class UserApi {
         return ResponseEntity.ok(userService.getUserById(id));
     }
     @PreAuthorize("#username == authentication.principal.username or hasRole('ADMIN')")
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable @Valid Integer id, @RequestBody UserDTO dto) {
         return ResponseEntity.ok(userService.updateUser(id, dto));
     }

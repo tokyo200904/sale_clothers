@@ -17,7 +17,7 @@ public class SanPhamBtapi {
 
         // Create
         @PreAuthorize("hasRole('ADMIN')")
-        @PostMapping("/create/{id}")
+        @PostMapping("/{id}")
         public ResponseEntity<SanPhamBtDTO> create(@PathVariable Integer id
                                                   ,@RequestBody SanPhamBtDTO dto) {
             SanPhamBtDTO created = sanPhamBtService.createSanPhamBt(id,dto);
@@ -26,7 +26,7 @@ public class SanPhamBtapi {
 
         // Update
         @PreAuthorize("hasRole('ADMIN')")
-        @PutMapping("/update/{id}")
+        @PutMapping("/{id}")
         public ResponseEntity<SanPhamBtDTO> update(@PathVariable Integer id,
                                                    @RequestBody SanPhamBtDTO dto) {
             SanPhamBtDTO updated = sanPhamBtService.updateSanPham(id, dto);
@@ -35,7 +35,7 @@ public class SanPhamBtapi {
 
         // Get by id
         @PreAuthorize("hasRole('ADMIN')")
-        @GetMapping("/get/{id}")
+        @GetMapping("/{id}")
         public ResponseEntity<SanPhamBtDTO> getById(@PathVariable Integer id) {
             SanPhamBtDTO dto = sanPhamBtService.getByIdSanPhamBt(id);
             return ResponseEntity.ok(dto);
@@ -43,7 +43,7 @@ public class SanPhamBtapi {
 
         // Get all chi tiết của 1 sản phẩm
         @PreAuthorize("hasRole('ADMIN')")
-        @GetMapping("/get/sanpham/{maSP}")
+        @GetMapping("/sanpham/{maSP}")
         public ResponseEntity<List<SanPhamBtDTO>> getBySanPham(@PathVariable Integer maSP) {
             List<SanPhamBtDTO> list = sanPhamBtService.getBySanPhamId(maSP);
             return ResponseEntity.ok(list);
@@ -51,7 +51,7 @@ public class SanPhamBtapi {
 
         // Delete
         @PreAuthorize("hasRole('ADMIN')")
-        @DeleteMapping("/delete/{id}")
+        @DeleteMapping("/{id}")
         public ResponseEntity<Void> delete(@PathVariable Integer id) {
             sanPhamBtService.deleteSanPhamBt(id);
             return ResponseEntity.noContent().build();

@@ -39,14 +39,16 @@ public class UserdkSeviceimpl implements UserdkSevice {
         }
         UserEntity user = new UserEntity();
         user.setTenKhachHang("nguoi dung moi");
-        user.setSoDienThoai("");
+        user.setSoDienThoai(null);
         user.setDiaChi("");
         user.setRole("customer");
         user.setEmail(userdkDTO.getEmail());
-        user.setMatKhau(userdkDTO.getMatKhau());
         user.setEnable(true);
         user.setNgayTao(new Date());
 
+        String password = userdkDTO.getMatKhau();
+        String encodedPassword = passwordEncoder.encode(password);
+        user.setMatKhau(encodedPassword);
         UserEntity savedUser = userdkRepository.save(user);
 
         UserDTO result = new UserDTO();
